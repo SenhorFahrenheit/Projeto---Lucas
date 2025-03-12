@@ -1,0 +1,48 @@
+/* assets/css/styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.game-over-container {
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    color: #ff6347; /* Cor de destaque */
+}
+
+#user-name {
+    font-weight: bold;
+    color: #4CAF50; /* Cor do nome do usuário */
+}
+
+#user-score {
+    font-weight: bold;
+    color: #2196F3; /* Cor da pontuação */
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
