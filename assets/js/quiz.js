@@ -1,5 +1,5 @@
 let questions = [];
-let currentQuestionIndex = 0;
+let currentQuestionIndex = Math.floor(Math.random() * 15); //Definir sem sorteio para testes
 let score = 0;
 
 async function loadQuestions() {
@@ -37,7 +37,6 @@ function loadQuestion() {
   }
   const questionText = document.getElementById("question-text");
   const options = document.querySelectorAll(".option");
-  console.log(questions[0])
   const currentQuestion = questions[currentQuestionIndex];
 
   questionText.innerText = currentQuestion.question;
@@ -48,17 +47,49 @@ function loadQuestion() {
   });
 }
 
-function selectAnswer(selectedIndex) {
+async function selectAnswer(selectedIndex) {
   if (selectedIndex === questions[currentQuestionIndex].correct) {
     score += 10;
+    // Atualiza a pontuação no localStorage
+    localStorage.setItem("userScore", score);
     document.getElementById("score").innerText = score;
   }
-
+  else{
+    alert("Resposta errada")
+    // const userAnswer = currentQuestion.alternatives[selectedIndex];
+    const userAnswer = questions[currentQuestionIndex].alternatives[selectedIndex];
+    const userQuestion = questions[currentQuestionIndex].question;
+    console.log(userQuestion)
+    console.log(userAnswer);
+    const explanation = await fetchExplanation(userQuestion, userAnswer);
+  }
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     loadQuestion();
   } else {
     endGame();
+  }
+}
+
+// não está pronta, falta aperfeiçoar e criar a API
+async function fetchExplanation(userQuestion, userAnswer) {
+  try {
+    const response = await fetch("", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userQuestion: userQuestion,
+        userAnswer: userAnswer
+      })
+    });
+
+    const data = await response.json();
+    return data.explanation; // A API deve retornar uma explicação
+  } catch (error) {
+    console.error("Erro ao buscar explicação:", error);
+    return "Não foi possível obter uma explicação no momento.";
   }
 }
 
