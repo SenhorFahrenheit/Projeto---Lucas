@@ -1,202 +1,203 @@
 [
-  {
-    "pergunta": "O que é um algoritmo?",
-    "alternativas": [
-      "Uma sequência de passos para resolver um problema",
-      "Um programa de computador completo",
-      "Uma linguagem de programação",
-      "Um tipo de dado específico"
-    ],
-    "correta": 0
-  },
-  {
-    "pergunta": "Qual a principal característica de um algoritmo eficiente?",
-    "alternativas": [
-      "Ser simples e fácil de entender",
-      "Utilizar pouca memória",
-      "Ter bom desempenho e escalabilidade",
-      "Todos os anteriores"
-    ],
-    "correta": 3
-  },
-  {
-    "pergunta": "O que é uma variável em programação?",
-    "alternativas": [
-      "Um valor fixo",
-      "Um local para armazenar dados que podem variar",
-      "Uma função que realiza operações",
-      "Uma instrução condicional"
-    ],
-    "correta": 1
-  },
-  {
-    "pergunta": "Qual estrutura de repetição garante a execução de pelo menos uma vez o bloco de código?",
-    "alternativas": [
-      "For",
-      "While",
-      "Do-while",
-      "Loop infinito"
-    ],
-    "correta": 2
-  },
-  {
-    "pergunta": "O que significa 'debug'?",
-    "alternativas": [
-      "Escrever o código",
-      "Testar o programa",
-      "Localizar e remover erros do código",
-      "Compilar o programa"
-    ],
-    "correta": 2
-  },
-  {
-    "pergunta": "Qual é o papel principal de uma função em programação?",
-    "alternativas": [
-      "Executar uma tarefa específica",
-      "Armazenar dados permanentemente",
-      "Controlar a alocação de memória",
-      "Interromper a execução do programa"
-    ],
-    "correta": 0
-  },
-  {
-    "pergunta": "Qual das seguintes linguagens é compilada?",
-    "alternativas": [
-      "Python",
-      "JavaScript",
-      "C",
-      "Ruby"
-    ],
-    "correta": 2
-  },
-  {
-    "pergunta": "O que é um array?",
-    "alternativas": [
-      "Um único valor",
-      "Uma coleção ordenada de elementos",
-      "Uma função que retorna múltiplos valores",
-      "Uma estrutura de repetição"
-    ],
-    "correta": 1
-  },
-  {
-    "pergunta": "Qual das alternativas melhor define recursão?",
-    "alternativas": [
-      "Uma função que chama ela mesma",
-      "Um laço de repetição com condição de parada",
-      "Uma estrutura para armazenar dados temporários",
-      "Um método para ordenar dados"
-    ],
-    "correta": 0
-  },
-  {
-    "pergunta": "Em um algoritmo, o que é um condicional?",
-    "alternativas": [
-      "Uma estrutura para repetir ações",
-      "Uma instrução que toma decisões com base em condições",
-      "Um tipo de variável",
-      "Uma função sem retorno"
-    ],
-    "correta": 1
-  },
-  {
-    "pergunta": "O que é pseudocódigo?",
-    "alternativas": [
-      "Código escrito em uma linguagem de baixo nível",
-      "Código executável diretamente pelo computador",
-      "Uma representação simplificada e humanizada de um algoritmo",
-      "Uma linguagem de programação compilada"
-    ],
-    "correta": 2
-  },
-  {
-    "pergunta": "Qual a principal função de um compilador?",
-    "alternativas": [
-      "Executar o código imediatamente",
-      "Converter o código-fonte em código de máquina",
-      "Editar o código fonte",
-      "Interpretar o código linha a linha"
-    ],
-    "correta": 1
-  },
-  {
-    "pergunta": "O que é lógica de programação?",
-    "alternativas": [
-      "O estudo de algoritmos e a forma de resolver problemas computacionais",
-      "Uma linguagem de programação específica",
-      "Um método para depurar códigos",
-      "Uma ferramenta para compilar programas"
-    ],
-    "correta": 0
-  },
-  {
-    "pergunta": "O que é uma estrutura de dados?",
-    "alternativas": [
-      "Um tipo de algoritmo",
-      "Um método de organizar e armazenar dados",
-      "Uma linguagem de consulta",
-      "Uma função de processamento"
-    ],
-    "correta": 1
-  },
-  {
-    "pergunta": "Qual é a complexidade de um algoritmo de busca binária no pior caso?",
-    "alternativas": [
-      "O(n)",
-      "O(n²)",
-      "O(log n)",
-      "O(1)"
-    ],
-    "correta": 2
-  },
-  {
-    "pergunta": "Em programação, o que significa 'loop infinito'?",
-    "alternativas": [
-      "Um laço de repetição que nunca termina",
-      "Um laço que executa apenas uma vez",
-      "Um laço com condição falsa",
-      "Um laço que termina após um número fixo de iterações"
-    ],
-    "correta": 0
-  },
-  {
-    "pergunta": "O que faz a estrutura 'if-else'?",
-    "alternativas": [
-      "Repetir um bloco de código",
-      "Executar diferentes blocos de código com base em uma condição",
-      "Armazenar e recuperar dados",
-      "Interromper a execução do programa"
-    ],
-    "correta": 1
-  },
-  {
-    "pergunta": "O que é um bug em um programa?",
-    "alternativas": [
-      "Um tipo de dado utilizado em arrays",
-      "Um erro ou falha no código",
-      "Uma função de otimização",
-      "Uma ferramenta de compilação"
-    ],
-    "correta": 1
-  },
-  {
-    "pergunta": "Qual das opções é considerada uma prática de programação limpa?",
-    "alternativas": [
-      "Utilizar nomes de variáveis curtos e sem significado",
-      "Escrever código sem comentários",
-      "Utilizar nomes claros e organizados para variáveis e funções",
-      "Misturar diferentes paradigmas de programação sem separação"
-    ],
-    "correta": 2
-  },
-  {
-    "pergunta": "Em lógica de programação, o que é o 'caso base' em uma função recursiva?",
-    "alternativas": [
-      "A condição que permite a continuidade da recursão",
-      "A condição que encerra a recursão",
-      "Uma variável global utilizada na função",
-      "Um laço de repetição interno à função"
-    ],
-    "correta": 1
-  }
-]
+    {
+      "question": "O que é um algoritmo?",
+      "alternatives": [
+        "Uma sequência de passos para resolver um problema",
+        "Um programa de computador completo",
+        "Uma linguagem de programação",
+        "Um tipo de dado específico"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Qual a principal característica de um algoritmo eficiente?",
+      "alternatives": [
+        "Ser simples e fácil de entender",
+        "Utilizar pouca memória",
+        "Ter bom desempenho e escalabilidade",
+        "Todos os anteriores"
+      ],
+      "correct": 3
+    },
+    {
+      "question": "O que é uma variável em programação?",
+      "alternatives": [
+        "Um valor fixo",
+        "Um local para armazenar dados que podem variar",
+        "Uma função que realiza operações",
+        "Uma instrução condicional"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Qual estrutura de repetição garante a execução de pelo menos uma vez o bloco de código?",
+      "alternatives": [
+        "For",
+        "While",
+        "Do-while",
+        "Loop infinito"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "O que significa 'debug'?",
+      "alternatives": [
+        "Escrever o código",
+        "Testar o programa",
+        "Localizar e remover erros do código",
+        "Compilar o programa"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Qual é o papel principal de uma função em programação?",
+      "alternatives": [
+        "Executar uma tarefa específica",
+        "Armazenar dados permanentemente",
+        "Controlar a alocação de memória",
+        "Interromper a execução do programa"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Qual das seguintes linguagens é compilada?",
+      "alternatives": [
+        "Python",
+        "JavaScript",
+        "C",
+        "Ruby"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "O que é um array?",
+      "alternatives": [
+        "Um único valor",
+        "Uma coleção ordenada de elementos",
+        "Uma função que retorna múltiplos valores",
+        "Uma estrutura de repetição"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Qual das alternatives melhor define recursão?",
+      "alternatives": [
+        "Uma função que chama ela mesma",
+        "Um laço de repetição com condição de parada",
+        "Uma estrutura para armazenar dados temporários",
+        "Um método para ordenar dados"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Em um algoritmo, o que é um condicional?",
+      "alternatives": [
+        "Uma estrutura para repetir ações",
+        "Uma instrução que toma decisões com base em condições",
+        "Um tipo de variável",
+        "Uma função sem retorno"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "O que é pseudocódigo?",
+      "alternatives": [
+        "Código escrito em uma linguagem de baixo nível",
+        "Código executável diretamente pelo computador",
+        "Uma representação simplificada e humanizada de um algoritmo",
+        "Uma linguagem de programação compilada"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Qual a principal função de um compilador?",
+      "alternatives": [
+        "Executar o código imediatamente",
+        "Converter o código-fonte em código de máquina",
+        "Editar o código fonte",
+        "Interpretar o código linha a linha"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "O que é lógica de programação?",
+      "alternatives": [
+        "O estudo de algoritmos e a forma de resolver problemas computacionais",
+        "Uma linguagem de programação específica",
+        "Um método para depurar códigos",
+        "Uma ferramenta para compilar programas"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "O que é uma estrutura de dados?",
+      "alternatives": [
+        "Um tipo de algoritmo",
+        "Um método de organizar e armazenar dados",
+        "Uma linguagem de consulta",
+        "Uma função de processamento"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Qual é a complexidade de um algoritmo de busca binária no pior caso?",
+      "alternatives": [
+        "O(n)",
+        "O(n²)",
+        "O(log n)",
+        "O(1)"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Em programação, o que significa 'loop infinito'?",
+      "alternatives": [
+        "Um laço de repetição que nunca termina",
+        "Um laço que executa apenas uma vez",
+        "Um laço com condição falsa",
+        "Um laço que termina após um número fixo de iterações"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "O que faz a estrutura 'if-else'?",
+      "alternatives": [
+        "Repetir um bloco de código",
+        "Executar diferentes blocos de código com base em uma condição",
+        "Armazenar e recuperar dados",
+        "Interromper a execução do programa"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "O que é um bug em um programa?",
+      "alternatives": [
+        "Um tipo de dado utilizado em arrays",
+        "Um erro ou falha no código",
+        "Uma função de otimização",
+        "Uma ferramenta de compilação"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Qual das opções é considerada uma prática de programação limpa?",
+      "alternatives": [
+        "Utilizar nomes de variáveis curtos e sem significado",
+        "Escrever código sem comentários",
+        "Utilizar nomes claros e organizados para variáveis e funções",
+        "Misturar diferentes paradigmas de programação sem separação"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Em lógica de programação, o que é o 'caso base' em uma função recursiva?",
+      "alternatives": [
+        "A condição que permite a continuidade da recursão",
+        "A condição que encerra a recursão",
+        "Uma variável global utilizada na função",
+        "Um laço de repetição interno à função"
+      ],
+      "correct": 1
+    }
+  ]
+  

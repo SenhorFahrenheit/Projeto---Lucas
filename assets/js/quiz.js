@@ -5,10 +5,8 @@ let score = 0;
 async function loadQuestions() {
   try {
     const response = await fetch("questions.json"); // Carrega o arquivo JSON
-    console.log(response)
     questions = await response.json(); // Converte para objeto JS
-    console.log(questions)
-    startQuiz(); // Inicia o quiz após carregar as perguntas
+    // startQuiz(); // Inicia o quiz após carregar as perguntas
   } catch (error) {
     console.error("Erro ao carregar as perguntas:", error);
   }
@@ -37,16 +35,15 @@ function loadQuestion() {
     console.error("Nenhuma pergunta carregada.");
     return;
   }
-
   const questionText = document.getElementById("question-text");
   const options = document.querySelectorAll(".option");
-
+  console.log(questions[0])
   const currentQuestion = questions[currentQuestionIndex];
 
   questionText.innerText = currentQuestion.question;
 
   options.forEach((option, index) => {
-    option.innerText = currentQuestion.options[index];
+    option.innerText = currentQuestion.alternatives[index];
     option.onclick = () => selectAnswer(index);
   });
 }
@@ -80,5 +77,5 @@ function restartGame() {
   loadQuestion();
 }
 
-// Carrega as perguntas quando a página for aberta
+// // Carrega as perguntas quando a página for aberta
 window.onload = loadQuestions;
