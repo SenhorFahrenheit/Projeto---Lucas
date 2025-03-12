@@ -9,7 +9,7 @@
 <body>
 
   <div id="quiz-container">
-    <!-- Tela de boas-vindas com a solicitação do nome -->
+    <!-- Tela de boas-vindas -->
     <div id="start-screen">
       <h1>Quiz de Lógica de Programação</h1>
       <p>Antes de começar, insira seu nome:</p>
@@ -21,15 +21,20 @@
     <!-- Tela do Quiz (inicialmente oculta) -->
     <div id="quiz-screen" style="display: none;">
       <h2 id="welcomeMessage"></h2>
-      <div id="question-container">
-        <!-- As perguntas serão dinamicamente adicionadas aqui -->
+      <h2 id="question-text">Aqui vai a pergunta</h2>
+
+      <div id="options-container">
+        <div class="option" onclick="selectAnswer(0)"></div>
+        <div class="option" onclick="selectAnswer(1)"></div>
+        <div class="option" onclick="selectAnswer(2)"></div>
+        <div class="option" onclick="selectAnswer(3)"></div>
       </div>
+
       <div id="score-container">
         Pontuação: <span id="score">0</span>
       </div>
     </div>
   </div>
-
 
 <script src="js/quiz.js"></script>
 </body>
