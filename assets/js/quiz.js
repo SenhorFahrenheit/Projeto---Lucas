@@ -1,5 +1,5 @@
 let questions = [];
-let currentQuestionIndex = Math.floor(Math.random() * 15); //Definir sem sorteio para testes
+let currentQuestionIndex = Math.floor(Math.random() * 30); //Definir sem sorteio para testes
 let score = 0;
 
 async function loadQuestions() {

@@ -198,6 +198,196 @@
         "Um laço de repetição interno à função"
       ],
       "correct": 1
-    }
-  ]
+    },
   
+  {
+    "question": "Qual a principal diferença entre recursão e iteração?",
+    "alternatives": [
+      "Recursão utiliza chamadas de função enquanto iteração usa laços de repetição",
+      "Recursão é mais rápida que iteração",
+      "Itteração utiliza chamadas de função e recursão usa laços de repetição",
+      "Não há diferença entre elas"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "O que é escopo de uma variável em programação?",
+    "alternatives": [
+      "O tipo de dado que a variável armazena",
+      "A região do código onde a variável pode ser acessada",
+      "A quantidade de memória alocada para a variável",
+      "A velocidade com que a variável é processada"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual é o resultado esperado ao tentar dividir um número por zero na maioria das linguagens de programação?",
+    "alternatives": [
+      "Retorna zero",
+      "Gera erro ou exceção",
+      "Retorna o mesmo número",
+      "Interrompe a compilação sem gerar erro"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que é um comentário em código?",
+    "alternatives": [
+      "Uma parte do código ignorada pelo compilador ou interpretador",
+      "Uma linha que é executada pelo programa",
+      "Uma variável utilizada para depuração",
+      "Uma função que documenta o código"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual é o objetivo do tratamento de exceções em um programa?",
+    "alternatives": [
+      "Melhorar a performance do código",
+      "Evitar que o programa seja interrompido por erros inesperados",
+      "Diminuir o tamanho do código",
+      "Converter código-fonte em código de máquina"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que significa modularização em programação?",
+    "alternatives": [
+      "Dividir o programa em partes menores e independentes",
+      "Escrever todo o código em um único arquivo",
+      "Utilizar uma única função para todas as operações",
+      "Compilar o código em módulos separados automaticamente"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "O que caracteriza o erro 'stack overflow' em programação?",
+    "alternatives": [
+      "Erro de sintaxe na definição de funções",
+      "Erro na alocação excessiva de memória na pilha de chamadas",
+      "Erro ao acessar índices inválidos em arrays",
+      "Erro causado por variáveis não inicializadas"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual é a finalidade principal de um algoritmo de ordenação?",
+    "alternatives": [
+      "Buscar elementos específicos em uma lista",
+      "Organizar elementos em uma sequência determinada",
+      "Dividir dados em categorias distintas",
+      "Calcular a complexidade do algoritmo"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que é uma expressão condicional?",
+    "alternatives": [
+      "Uma expressão que realiza operações matemáticas complexas",
+      "Uma expressão que retorna um valor booleano (verdadeiro ou falso)",
+      "Uma função que processa vários tipos de dados",
+      "Uma estrutura para armazenar dados temporários"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que significa depuração (debugging) de um código?",
+    "alternatives": [
+      "Compilar o código para detectar erros de sintaxe",
+      "Identificar e corrigir erros e falhas no código",
+      "Transformar código-fonte em código de máquina",
+      "Documentar o código para facilitar a manutenção"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual a importância da indentação correta em um código fonte?",
+    "alternatives": [
+      "Aumenta a velocidade de execução do programa",
+      "Facilita a leitura e manutenção do código",
+      "Reduz o consumo de memória durante a execução",
+      "Permite a compilação sem erros de sintaxe"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que caracteriza uma linguagem de alto nível?",
+    "alternatives": [
+      "Fica próxima da linguagem de máquina",
+      "Possui sintaxe abstrata e mais próxima da linguagem humana",
+      "É utilizada exclusivamente para desenvolvimento de sistemas operacionais",
+      "É sempre interpretada em vez de compilada"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual a diferença entre variáveis locais e globais?",
+    "alternatives": [
+      "Variáveis locais podem ser acessadas em todo o programa",
+      "Variáveis globais são definidas dentro de funções e locais fora delas",
+      "Variáveis locais são definidas dentro de funções e só podem ser acessadas ali, enquanto globais são acessíveis em todo o código",
+      "Não há diferença, são apenas termos diferentes para a mesma coisa"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "O que significa o termo 'paradigma de programação'?",
+    "alternatives": [
+      "Um conjunto de técnicas e conceitos que orientam a escrita de código",
+      "Um tipo específico de linguagem de programação",
+      "Uma ferramenta para compilar e executar programas",
+      "Um método de criptografia de dados"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual das opções caracteriza um problema relacionado à recursão mal implementada?",
+    "alternatives": [
+      "Uso excessivo de memória devido a muitas chamadas de função",
+      "O algoritmo se torna iterativo e perde a recursividade",
+      "A execução se torna linear e previsível",
+      "Ocorre uma redução significativa na complexidade do algoritmo"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual das alternativas abaixo NÃO é considerada um paradigma de programação?",
+    "alternatives": [
+      "Programação orientada a objetos",
+      "Programação funcional",
+      "Programação imperativa",
+      "Programação inercial"
+    ],
+    "correct": 3
+  },
+  {
+    "question": "O que é o 'debugger' em um ambiente de desenvolvimento?",
+    "alternatives": [
+      "Uma ferramenta para criar documentação do código",
+      "Uma ferramenta que auxilia na identificação e correção de erros",
+      "Um tipo de compilador otimizado",
+      "Uma função que executa testes de performance"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que caracteriza a recursão de cauda em programação?",
+    "alternatives": [
+      "Uma forma de recursão que evita acúmulo de chamadas na pilha",
+      "Uma recursão que não possui caso base",
+      "Uma função recursiva sem parâmetros",
+      "Uma recursão que só pode ser convertida em iteração"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual é a principal vantagem de utilizar funções em programação?",
+    "alternatives": [
+      "Redução de duplicação de código e maior modularização",
+      "Aumento da complexidade do código",
+      "Diminuição do tempo de desenvolvimento de pequenas tarefas",
+      "Complicação da manutenção futura do código"
+    ],
+    "correct": 0
+  }
+]
