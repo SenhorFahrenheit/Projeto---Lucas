@@ -11,9 +11,9 @@ async function loadQuestions() {
   try {
     const response = await fetch("questions.json"); // Carrega o arquivo JSON
     questions = await response.json(); // Converte para objeto JS
-    questions = shuffleArray(questions).slice(0, 10);
+    questions = shuffleArray(questions).slice(0, 10); //Embaralha as 30 questões e fatia 10
     currentQuestionIndex = 0; // Garante que o índice começa do primeiro
-    console.log(questions)
+    console.log(questions) //Para testes
     // startQuiz(); // Inicia o quiz após carregar as perguntas
   } catch (error) {
     console.error("Erro ao carregar as perguntas:", error);
@@ -29,7 +29,7 @@ function startQuiz() {
   }
 
   localStorage.setItem("userName", userName);
-
+  localStorage.setItem("userScore", score);
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("quiz-screen").style.display = "block";
 
@@ -119,8 +119,12 @@ function endGame() {
 function restartGame() {
   currentQuestionIndex = 0;
   score = 0;
-  loadQuestion();
+  lives = 5; // Resetando as vidas
+  localStorage.setItem("userScore", score);
+  document.getElementById("quiz-screen").style.display = "none";
+  document.getElementById("start-screen").style.display = "block";
 }
+
 
 // // Carrega as perguntas quando a página for aberta
 window.onload = loadQuestions;
