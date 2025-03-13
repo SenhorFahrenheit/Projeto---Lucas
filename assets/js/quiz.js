@@ -2,10 +2,17 @@ let questions = [];
 let currentQuestionIndex = Math.floor(Math.random() * 30); //Definir sem sorteio para testes
 let score = 0;
 
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
 async function loadQuestions() {
   try {
     const response = await fetch("questions.json"); // Carrega o arquivo JSON
     questions = await response.json(); // Converte para objeto JS
+    questions = shuffleArray(questions).slice(0, 10);
+    currentQuestionIndex = 0; // Garante que o índice começa do primeiro
+    console.log(questions)
     // startQuiz(); // Inicia o quiz após carregar as perguntas
   } catch (error) {
     console.error("Erro ao carregar as perguntas:", error);
