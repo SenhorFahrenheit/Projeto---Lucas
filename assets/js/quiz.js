@@ -1,6 +1,7 @@
 let questions = [];
 let currentQuestionIndex = Math.floor(Math.random() * 30); //Definir sem sorteio para testes
 let score = 0;
+let lives = 5;
 
 function shuffleArray(array) {
   return array.sort(() => Math.random() - 0.5);
@@ -63,6 +64,12 @@ async function selectAnswer(selectedIndex) {
   }
   else{
     alert("Resposta errada")
+    lives--
+    console.log(lives)
+    if (lives === 0) {
+      endGame();
+      return;
+    }
     // const userAnswer = currentQuestion.alternatives[selectedIndex];
     const userAnswer = questions[currentQuestionIndex].alternatives[selectedIndex];
     const userQuestion = questions[currentQuestionIndex].question;
