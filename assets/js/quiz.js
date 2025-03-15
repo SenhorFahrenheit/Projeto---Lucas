@@ -61,22 +61,26 @@ async function selectAnswer(selectedIndex) {
     // Atualiza a pontuação no localStorage
     localStorage.setItem("userScore", score);
     document.getElementById("score").innerText = score;
-  }
-  else{
-    alert("Resposta errada")
-    lives--
-    console.log(lives)
+  } else {
+    alert("Resposta errada");
+    lives--;
+    console.log(lives);
     if (lives === 0) {
       endGame();
       return;
     }
-    // const userAnswer = currentQuestion.alternatives[selectedIndex];
+    // Coletando a resposta do usuário e a questão
     const userAnswer = questions[currentQuestionIndex].alternatives[selectedIndex];
     const userQuestion = questions[currentQuestionIndex].question;
-    console.log(userQuestion)
+    console.log(userQuestion);
     console.log(userAnswer);
+    
+    // Envia a requisição para o backend
     const explanation = await fetchExplanation(userQuestion, userAnswer);
+    // Exibe a explicação para o usuário
+    console.log(explanation);
   }
+
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     loadQuestion();
@@ -85,27 +89,32 @@ async function selectAnswer(selectedIndex) {
   }
 }
 
-// não está pronta, falta aperfeiçoar e criar a API
 async function fetchExplanation(userQuestion, userAnswer) {
-  try {
-    const response = await fetch("", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userQuestion: userQuestion,
-        userAnswer: userAnswer
-      })
-    });
+  const response = await fetch('http://127.0.0.1:5000/chat', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      userQuestion: userQuestion,
+      userAnswer: userAnswer,
+    }),
+  });
 
-    const data = await response.json();
-    return data.explanation; // A API deve retornar uma explicação
-  } catch (error) {
-    console.error("Erro ao buscar explicação:", error);
-    return "Não foi possível obter uma explicação no momento.";
+  const data = await response.json();
+  // Retorna a explicação para a resposta errada
+  if (data.response) {
+    return data.response;
+  } else {
+    return "Desculpe, não conseguimos obter uma explicação.";
   }
 }
+
+
+
+
+
+
 
 function endGame() {
   const userName = localStorage.getItem("userName");
