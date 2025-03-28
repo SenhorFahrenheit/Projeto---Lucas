@@ -7,6 +7,8 @@ document.getElementById('start-btn').addEventListener('click', startGame);
 function startGame() {
   // Armazenar dados de início ou pontuação
   localStorage.setItem('userScore', 0);
+  localStorage.setItem('userName', '');
+
   
   // Redireciona ou mostra a tela do quiz
   window.location.href = 'assets/quiz.html'; // Exemplo, se o quiz estiver em uma página separada
