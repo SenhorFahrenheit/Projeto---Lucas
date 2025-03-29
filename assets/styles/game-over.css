@@ -1,48 +1,99 @@
-/* assets/css/styles.css */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
+    background-color: #5F5980; /* Cor de fundo */
+    color: #DFDFDF; /* Cor do texto */
 }
 
 .game-over-container {
-    padding: 50px;
-    background-color: #fff;
+    width: 90%;
+    max-width: 600px;
+    background-color: #343434; /* Cor do container */
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 h1 {
-    color: #ff6347; /* Cor de destaque */
+    font-size: 2.5em;
+    margin-bottom: 20px;
 }
 
-#user-name {
-    font-weight: bold;
-    color: #4CAF50; /* Cor do nome do usuário */
+.user-info {
+    margin-bottom: 30px;
 }
 
-#user-score {
-    font-weight: bold;
-    color: #2196F3; /* Cor da pontuação */
+.user-info p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #0E34A0; /* Cor dos botões */
+    color: #DFDFDF;
+    padding: 15px 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 1em;
     cursor: pointer;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #0B2B80;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .game-over-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .user-info p {
+        font-size: 1.1em;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-over-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .user-info p {
+        font-size: 1em;
+    }
+
+    button {
+        font-size: 0.9em;
+    }
 }

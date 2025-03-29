@@ -25,15 +25,7 @@ function startQuiz() {
 
 // Função para finalizar o jogo e exibir a pontuação final
 function endGame(score) {
-    // Recupera o nome do usuário armazenado no localStorage
-    const userName = localStorage.getItem("userName");
-
-    // Substitui o conteúdo da tela do quiz pelo resultado final e um botão para reiniciar o jogo
-    document.getElementById("quiz-screen").innerHTML = `
-      <h2>Fim de jogo!</h2>
-      <p>${userName}, sua pontuação final foi: <strong>${score}</strong></p>
-      <button onclick="restartGame()">Jogar Novamente</button>
-    `;
+  window.location.href = 'game-over.html';      
 }
 
 // Função para reiniciar o jogo
