@@ -90,7 +90,7 @@ async function selectAnswer(selectedIndex) {
 
     // Se o jogador perder todas as vidas, finaliza o jogo
     if (lives === 0) {
-      endGame(score);
+      endGame();
       return;
     }
 
@@ -101,11 +101,21 @@ async function selectAnswer(selectedIndex) {
     // Busca uma explicação para a resposta errada (supondo que fetchExplanation existe)
     const explanation = await fetchExplanation(userQuestion, userAnswer);
 
+    // Exibe o botão de explicação
+    document.getElementById("showExplanation").style.display = "block";
+
+    // Adiciona um ouvinte de evento ao botão
+    document.getElementById("showExplanation").addEventListener("click", function() {
+    displayExplanation(userQuestion, userAnswer, explanation);
+    })
+
     // Exibe a pergunta, a resposta do usuário e a explicação do erro no console
     console.log("Questão: " + userQuestion);
     console.log("Resposta: " + userAnswer);
     console.log("Explicação do erro: " + explanation);
   }
+
+
 
   // Avança para a próxima pergunta
   currentQuestionIndex++;
@@ -118,6 +128,15 @@ async function selectAnswer(selectedIndex) {
   }
 }
 
+function displayExplanation(question, answer, explanation) {
+    const explanationArea = document.getElementById("explanationArea");
+    explanationArea.innerHTML = `
+        <h2>Questão: ${question}</h2>
+        <p>Sua resposta: ${answer}</p>
+        <p>Explicação do erro: ${explanation}</p>
+    `;
+    explanationArea.style.display = "block";
+}
 // Carrega as perguntas quando a página for carregada
 window.onload = loadQuestions;
 
