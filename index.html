@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Game</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest - Quiz de Lógica</title>
+    <style>
+      
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-  <div class="menu-container">
-    <h1 class="title">Quiz Game</h1>
-    <div class="menu-buttons">
-      <button id="start-btn" class="menu-btn">Jogar</button>
-      <button id="settings-btn" class="menu-btn">Configurações</button>
-      <button id="exit-btn" class="menu-btn">Sair</button>
+    <div class="container">
+        <div class="left">
+            <h1>CodeQuest</h1>
+            <p>O desafio da lógica</p>
+            <span>Responda perguntas desafiadoras e teste seus conhecimentos em lógica de programação. Será que você consegue acertar todas?</span>
+            <button id="start-btn" class="btn">Jogar</button>
+        </div>
+        <div class="right">
+            <span id="typing-text"></span>
+        </div>
     </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

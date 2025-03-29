@@ -13,3 +13,34 @@ function startGame() {
   // Redireciona ou mostra a tela do quiz
   window.location.href = 'assets/quiz.html'; // Exemplo, se o quiz estiver em uma página separada
 }
+
+const typingText = document.getElementById('typing-text');
+const text = `
+/*
+* CodeQuest - Quiz de Lógica
+* Criado por: Lucas e [Nome da sua parceira]
+* Versão: 1.0
+* Data: [Data Atual]
+*/
+
+function solveLogic(question) {
+// Lógica complexa aqui...
+if (question.isHard()) {
+return "Desafio aceito!";
+} else {
+return "Vamos para o próximo!";
+}
+}
+`;
+let charIndex = 0;
+
+function type() {
+    if (charIndex < text.length) {
+        typingText.textContent += text.charAt(charIndex);
+        charIndex++;
+        setTimeout(type, 50);
+    }
+}
+
+// Adiciona um atraso de 2 segundos antes de iniciar a digitação
+setTimeout(type, 2000);
