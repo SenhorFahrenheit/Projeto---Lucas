@@ -173,4 +173,7 @@ body {
 #showExplanation:hover {
   background-color: #0B2B80;
 }
+.correct-answer {
+  border: 3px solid green; /* Adiciona uma borda verde */
+}
 

@@ -54,6 +54,7 @@ function loadQuestion() {
   options.forEach((option, index) => {
     option.innerText = currentQuestion.alternatives[index];
     option.onclick = () => selectAnswer(index); // Chama a função selectAnswer ao clicar
+    option.classList.remove("correct-answer"); // Remove a classe 'correct-answer'
   });
 }
 
@@ -97,6 +98,19 @@ async function selectAnswer(selectedIndex) {
     // Obtém a resposta selecionada e a pergunta atual
     const userAnswer = questions[currentQuestionIndex].alternatives[selectedIndex];
     const userQuestion = questions[currentQuestionIndex].question;
+
+
+    // Obtém o índice da resposta correta
+    const correctIndex = questions[currentQuestionIndex].correct;
+
+    // Obtém o elemento HTML da alternativa correta
+    const correctOptionElement = document.querySelectorAll(".option")[correctIndex];
+
+    // Agora você tem o elemento HTML da alternativa correta em correctOptionElement
+    console.log(correctOptionElement);
+
+    // Adiciona a classe 'correct-answer' ao elemento da resposta correta
+    correctOptionElement.classList.add("correct-answer");
 
     // Busca uma explicação para a resposta errada (supondo que fetchExplanation existe)
     const explanation = await fetchExplanation(userQuestion, userAnswer);
