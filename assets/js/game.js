@@ -115,13 +115,11 @@ async function selectAnswer(selectedIndex) {
     // Busca uma explicação para a resposta errada (supondo que fetchExplanation existe)
     const explanation = await fetchExplanation(userQuestion, userAnswer);
 
-    // Exibe o botão de explicação
-    document.getElementById("showExplanation").style.display = "block";
+     // Exibe a explicação do erro
+     displayExplanation(userQuestion, userAnswer, explanation);
 
-    // Adiciona um ouvinte de evento ao botão
-    document.getElementById("showExplanation").addEventListener("click", function() {
-    displayExplanation(userQuestion, userAnswer, explanation);
-    })
+     // Exibe o botão de explicação (opcional, caso queira manter o botão)
+     document.getElementById("showExplanation").style.display = "block";
 
     // Exibe a pergunta, a resposta do usuário e a explicação do erro no console
     console.log("Questão: " + userQuestion);
