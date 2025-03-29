@@ -115,11 +115,14 @@ async function selectAnswer(selectedIndex) {
     // Busca uma explicação para a resposta errada (supondo que fetchExplanation existe)
     const explanation = await fetchExplanation(userQuestion, userAnswer);
 
-     // Exibe a explicação do erro
-     displayExplanation(userQuestion, userAnswer, explanation);
+      // Exibe a explicação do erro
+      displayExplanation(userQuestion, userAnswer, explanation);
 
-     // Exibe o botão de explicação (opcional, caso queira manter o botão)
-     document.getElementById("showExplanation").style.display = "block";
+      // Exibe o botão de alternar explicação
+      document.getElementById("toggleExplanation").style.display = "block";
+
+      // Adiciona um ouvinte de evento ao botão de alternar explicação
+      document.getElementById("toggleExplanation").addEventListener("click", toggleExplanation);
 
     // Exibe a pergunta, a resposta do usuário e a explicação do erro no console
     console.log("Questão: " + userQuestion);
@@ -141,13 +144,26 @@ async function selectAnswer(selectedIndex) {
 }
 
 function displayExplanation(question, answer, explanation) {
-    const explanationArea = document.getElementById("explanationArea");
-    explanationArea.innerHTML = `
-        <h2>Questão: ${question}</h2>
-        <p>Sua resposta: ${answer}</p>
-        <p>Explicação do erro: ${explanation}</p>
-    `;
-    explanationArea.style.display = "block";
+  const explanationArea = document.getElementById("explanationArea");
+  explanationArea.innerHTML = `
+      <h2>Questão: ${question}</h2>
+      <p>Sua resposta: ${answer}</p>
+      <p>Explicação do erro: ${explanation}</p>
+  `;
+  explanationArea.style.display = "none"; // Inicialmente oculta a explicação
+}
+
+function toggleExplanation() {
+  const explanationArea = document.getElementById("explanationArea");
+  const toggleButton = document.getElementById("toggleExplanation");
+
+  if (explanationArea.style.display === "none") {
+      explanationArea.style.display = "block";
+      toggleButton.innerText = "Ocultar Explicação";
+  } else {
+      explanationArea.style.display = "none";
+      toggleButton.innerText = "Mostrar Explicação";
+  }
 }
 // Carrega as perguntas quando a página for carregada
 window.onload = loadQuestions;

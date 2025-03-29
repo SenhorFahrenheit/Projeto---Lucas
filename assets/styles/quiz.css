@@ -159,7 +159,7 @@ body {
   animation: fadeIn 0.5s ease-in-out; /* Animação de fade-in */
 }
 
-#showExplanation {
+#toggleExplanation {
   margin-top: 20px;
   padding: 12px 24px;
   background-color: #0E34A0;
@@ -170,7 +170,7 @@ body {
   transition: background-color 0.3s ease; /* Transição de cor */
 }
 
-#showExplanation:hover {
+#toggleExplanation:hover {
   background-color: #0B2B80;
 }
 .correct-answer {
