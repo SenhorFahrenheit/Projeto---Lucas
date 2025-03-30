@@ -104,7 +104,7 @@ span {
       transform: scale(1);
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .container {
       flex-direction: column;
   }
@@ -116,6 +116,7 @@ span {
   }
   #typing-text {
       width: 90%;
+      font-size: 11px;
   }
   .left {
       padding: 40px;

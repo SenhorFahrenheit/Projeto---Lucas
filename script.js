@@ -15,8 +15,7 @@ function startGame() {
 }
 
 const typingText = document.getElementById('typing-text');
-const text = `
-/*
+const text = `/*
 * CodeQuest - Quiz de Lógica
 * Criado por: Lucas e [Nome da sua parceira]
 * Versão: 1.0
@@ -27,9 +26,7 @@ function solveLogic(question) {
 // Lógica complexa aqui...
 if (question.isHard()) {
 return "Desafio aceito!";
-} else {
-return "Vamos para o próximo!";
-}
+} else { return "Vamos para o próximo!"; }
 }
 `;
 let charIndex = 0;
