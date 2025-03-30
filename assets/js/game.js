@@ -80,8 +80,8 @@ async function selectAnswer(selectedIndex) {
     // Armazena a pontuação no localStorage para persistência
     localStorage.setItem("userScore", score);
 
-    // Atualiza a exibição da pontuação na interface
-    document.getElementById("score").innerText = score;
+    // // Atualiza a exibição da pontuação na interface
+    // document.getElementById("score").innerText = score;
   } else {
     // Exibe um alerta informando que a resposta está errada
     alert("Resposta errada");

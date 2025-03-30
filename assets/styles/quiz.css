@@ -111,7 +111,7 @@ body {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   #quiz-container {
       width: 95%;
       padding: 20px;
@@ -121,13 +121,24 @@ body {
       grid-template-columns: 1fr;
   }
 
-  #question-text {
-      font-size: 1.8em;
-  }
-
   .option {
-      padding: 15px;
+      padding: 10px;
+      font-size: 14px;
   }
+  #explanationArea{
+    font-size: 14px;
+    padding: 0px;
+  }
+  #explanationArea h2{
+    font-size: 15px;
+  }
+  #toggleExplanation{
+    font-size: 13px;
+    height: 35px;
+    padding: 10px;
+  }
+  
+
 }
 
 @media (max-width: 480px) {
@@ -137,12 +148,27 @@ body {
   }
 
   #question-text {
-      font-size: 1.6em;
+      font-size: 1.0em;
+  }
+
+  #explanationArea h2{
+    font-size: 15px;
+  }
+  #explanationArea{
+    font-size: 12px;
   }
 
   .option {
       padding: 12px;
+      font-size: 14px
   }
+  #toggleExplanation{
+    font-size: 13px;
+    height: 35px;
+    padding: 5px;
+  }
+
+
 
   #start-screen input[type="text"] {
       width: 90%;

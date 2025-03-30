@@ -20,7 +20,7 @@ function startQuiz() {
     document.getElementById("quiz-screen").style.display = "block";
 
     // Exibe uma mensagem de boas-vindas com o nome do usuário
-    document.getElementById("welcomeMessage").innerText = `Bem-vindo, ${userName}!`;
+    // document.getElementById("welcomeMessage").innerText = `Bem-vindo, ${userName}!`;
 
     // Carrega a primeira pergunta do quiz
     loadQuestion();
