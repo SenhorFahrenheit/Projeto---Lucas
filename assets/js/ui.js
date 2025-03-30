@@ -1,5 +1,8 @@
 // Função para iniciar o quiz
 function startQuiz() {
+
+      restartGame()
+      
     // Obtém o nome do usuário a partir do campo de entrada e remove espaços extras
     const userName = document.getElementById("userName").value.trim();
 

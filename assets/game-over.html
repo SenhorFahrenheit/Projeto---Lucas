@@ -19,6 +19,9 @@
         </div>
     </div>
 <script>
+    document.querySelector("#play-again").addEventListener("click", function(){
+        window.location.href = 'quiz.html';
+    })
     // // Recupera o nome do usuário armazenado no localStorage
     const userName = localStorage.getItem("userName");
     const userScore = localStorage.getItem("userScore")
