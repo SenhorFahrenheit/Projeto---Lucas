@@ -74,57 +74,84 @@ function shuffleArray(array) {
 let lastCorrectTime = null; // Armazena o tempo da última resposta correta
   
 async function selectAnswer(selectedIndex) {
-  // Verifica se a resposta está correta
-  if (selectedIndex === questions[currentQuestionIndex].correct) {
-    const now = Date.now(); // Obtém o tempo atual em milissegundos
-    let points = 10; // Pontuação base para uma resposta correta
+  const toggleButton = document.getElementById("toggleExplanation"); // Referência para o botão de ocultar resposta
+  toggleButton.style.display = "none";
+  
+  
+  // qualquer erro gerado dentro do escopo de TRY, ele consegue tratar
+  try {
+    // Verifica se a resposta está correta
+    if (selectedIndex === questions[currentQuestionIndex].correct) {
+      const now = Date.now(); // Obtém o tempo atual em milissegundos
+      let points = 10; // Pontuação base para uma resposta correta
 
-    // Se houver um registro da última resposta correta, calcula o tempo entre respostas
-    if (lastCorrectTime) {
-      let timeDiff = (now - lastCorrectTime) / 1000; // Diferença de tempo em segundos
+      // Se houver um registro da última resposta correta, calcula o tempo entre respostas
+      if (lastCorrectTime) {
+        let timeDiff = (now - lastCorrectTime) / 1000; // Diferença de tempo em segundos
 
-      // Define um multiplicador com base no tempo de resposta:
-      // - Se for menor que 5s, dobra os pontos (x2)
-      // - Se for entre 5s e 10s, aplica um multiplicador de 1.5
-      // - Se for maior que 10s, mantém os pontos normais (x1)
-      let multiplier = timeDiff < 5 ? 2 : timeDiff < 10 ? 1.5 : 1;
+        // Define um multiplicador com base no tempo de resposta:
+        // - Se for menor que 5s, dobra os pontos (x2)
+        // - Se for entre 5s e 10s, aplica um multiplicador de 1.5
+        // - Se for maior que 10s, mantém os pontos normais (x1)
+        let multiplier = timeDiff < 5 ? 2 : timeDiff < 10 ? 1.5 : 1;
 
-      // Ajusta a pontuação final arredondando para um número inteiro
-      points = Math.round(points * multiplier);
+        // Ajusta a pontuação final arredondando para um número inteiro
+        points = Math.round(points * multiplier);
+      }
+
+      score += points; // Adiciona os pontos calculados à pontuação total
+      lastCorrectTime = now; // Atualiza o tempo da última resposta correta
+      localStorage.setItem("userScore", score); // Salva a pontuação no localStorage
+    } 
+    // Se a resposta estiver errada...
+    else {
+      // Exibe o botão na interface
+      toggleButton.style.display = "block";
+      // Desabilita o clique do botão durante o carregamento
+      toggleButton.disabled = true; 
+      // Exibe "Gerando resposta..." enquanto a resposta está sendo gerada
+      toggleButton.innerText = "Gerando resposta...";
+
+      // Exibe um alerta para resposta errada
+      alert("Resposta errada");
+      lives--; // Reduz uma vida
+
+      // Se o jogador perder todas as vidas, encerra o jogo
+      if (lives === 0) {
+        endGame();
+        return;
+      }
+
+      // Obtém a resposta selecionada e a pergunta atual
+      const userAnswer = questions[currentQuestionIndex].alternatives[selectedIndex];
+      const userQuestion = questions[currentQuestionIndex].question;
+
+      // Obtém o índice e o elemento HTML da resposta correta
+      const correctIndex = questions[currentQuestionIndex].correct;
+      const correctOptionElement = document.querySelectorAll(".option")[correctIndex];
+
+      // Destaca a resposta correta na interface
+      correctOptionElement.classList.add("correct-answer");
+
+      // Busca e exibe a explicação para a resposta errada
+      const explanation = await fetchExplanation(userQuestion, userAnswer);
+      displayExplanation(userQuestion, userAnswer, explanation);
+
+      // Exibe o botão para alternar a explicação
+      document.getElementById("toggleExplanation").style.display = "block";
+      document.getElementById("toggleExplanation").addEventListener("click", toggleExplanation);
     }
 
-    score += points; // Adiciona os pontos calculados à pontuação total
-    lastCorrectTime = now; // Atualiza o tempo da última resposta correta
-    localStorage.setItem("userScore", score); // Salva a pontuação no localStorage
-  } else {
-    // Exibe um alerta para resposta errada
-    alert("Resposta errada");
-    lives--; // Reduz uma vida
+    // Atualiza o texto do botão para "Mostrar Explicação" após a resposta ser processada
+    toggleButton.innerText = "Mostrar Explicação";
 
-    // Se o jogador perder todas as vidas, encerra o jogo
-    if (lives === 0) {
-      endGame();
-      return;
-    }
-
-    // Obtém a resposta selecionada e a pergunta atual
-    const userAnswer = questions[currentQuestionIndex].alternatives[selectedIndex];
-    const userQuestion = questions[currentQuestionIndex].question;
-
-    // Obtém o índice e o elemento HTML da resposta correta
-    const correctIndex = questions[currentQuestionIndex].correct;
-    const correctOptionElement = document.querySelectorAll(".option")[correctIndex];
-
-    // Destaca a resposta correta na interface
-    correctOptionElement.classList.add("correct-answer");
-
-    // Busca e exibe a explicação para a resposta errada
-    const explanation = await fetchExplanation(userQuestion, userAnswer);
-    displayExplanation(userQuestion, userAnswer, explanation);
-
-    // Exibe o botão para alternar a explicação
-    document.getElementById("toggleExplanation").style.display = "block";
-    document.getElementById("toggleExplanation").addEventListener("click", toggleExplanation);
+  } catch (error) {
+    // Caso haja erro ao gerar a resposta, atualiza o botão para indicar falha
+    toggleButton.innerText = "Falha ao gerar uma resposta";
+    console.error("Erro ao gerar explicação:", error);
+  } finally {
+    // Reabilita o botão caso a resposta tenha sido gerada ou falhado
+    toggleButton.disabled = false;
   }
 
   // Avança para a próxima pergunta
@@ -137,6 +164,7 @@ async function selectAnswer(selectedIndex) {
     endGame(score);
   }
 }
+
 
 
 
