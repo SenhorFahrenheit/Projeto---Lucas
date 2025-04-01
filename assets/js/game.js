@@ -71,25 +71,37 @@ function shuffleArray(array) {
  * Função assíncrona chamada quando o usuário seleciona uma resposta.
  * @param {number} selectedIndex - Índice da resposta selecionada pelo usuário.
  */
+let lastCorrectTime = null; // Armazena o tempo da última resposta correta
+  
 async function selectAnswer(selectedIndex) {
-  // Verifica se a resposta selecionada é a correta
+  // Verifica se a resposta está correta
   if (selectedIndex === questions[currentQuestionIndex].correct) {
-    // Incrementa a pontuação do jogador
-    score += 10;
+    const now = Date.now(); // Obtém o tempo atual em milissegundos
+    let points = 10; // Pontuação base para uma resposta correta
 
-    // Armazena a pontuação no localStorage para persistência
-    localStorage.setItem("userScore", score);
+    // Se houver um registro da última resposta correta, calcula o tempo entre respostas
+    if (lastCorrectTime) {
+      let timeDiff = (now - lastCorrectTime) / 1000; // Diferença de tempo em segundos
 
-    // // Atualiza a exibição da pontuação na interface
-    // document.getElementById("score").innerText = score;
+      // Define um multiplicador com base no tempo de resposta:
+      // - Se for menor que 5s, dobra os pontos (x2)
+      // - Se for entre 5s e 10s, aplica um multiplicador de 1.5
+      // - Se for maior que 10s, mantém os pontos normais (x1)
+      let multiplier = timeDiff < 5 ? 2 : timeDiff < 10 ? 1.5 : 1;
+
+      // Ajusta a pontuação final arredondando para um número inteiro
+      points = Math.round(points * multiplier);
+    }
+
+    score += points; // Adiciona os pontos calculados à pontuação total
+    lastCorrectTime = now; // Atualiza o tempo da última resposta correta
+    localStorage.setItem("userScore", score); // Salva a pontuação no localStorage
   } else {
-    // Exibe um alerta informando que a resposta está errada
+    // Exibe um alerta para resposta errada
     alert("Resposta errada");
+    lives--; // Reduz uma vida
 
-    // Reduz o número de vidas
-    lives--;
-
-    // Se o jogador perder todas as vidas, finaliza o jogo
+    // Se o jogador perder todas as vidas, encerra o jogo
     if (lives === 0) {
       endGame();
       return;
@@ -99,38 +111,21 @@ async function selectAnswer(selectedIndex) {
     const userAnswer = questions[currentQuestionIndex].alternatives[selectedIndex];
     const userQuestion = questions[currentQuestionIndex].question;
 
-
-    // Obtém o índice da resposta correta
+    // Obtém o índice e o elemento HTML da resposta correta
     const correctIndex = questions[currentQuestionIndex].correct;
-
-    // Obtém o elemento HTML da alternativa correta
     const correctOptionElement = document.querySelectorAll(".option")[correctIndex];
 
-    // Agora você tem o elemento HTML da alternativa correta em correctOptionElement
-    console.log(correctOptionElement);
-
-    // Adiciona a classe 'correct-answer' ao elemento da resposta correta
+    // Destaca a resposta correta na interface
     correctOptionElement.classList.add("correct-answer");
 
-    // Busca uma explicação para a resposta errada (supondo que fetchExplanation existe)
+    // Busca e exibe a explicação para a resposta errada
     const explanation = await fetchExplanation(userQuestion, userAnswer);
+    displayExplanation(userQuestion, userAnswer, explanation);
 
-      // Exibe a explicação do erro
-      displayExplanation(userQuestion, userAnswer, explanation);
-
-      // Exibe o botão de alternar explicação
-      document.getElementById("toggleExplanation").style.display = "block";
-
-      // Adiciona um ouvinte de evento ao botão de alternar explicação
-      document.getElementById("toggleExplanation").addEventListener("click", toggleExplanation);
-
-    // Exibe a pergunta, a resposta do usuário e a explicação do erro no console
-    console.log("Questão: " + userQuestion);
-    console.log("Resposta: " + userAnswer);
-    console.log("Explicação do erro: " + explanation);
+    // Exibe o botão para alternar a explicação
+    document.getElementById("toggleExplanation").style.display = "block";
+    document.getElementById("toggleExplanation").addEventListener("click", toggleExplanation);
   }
-
-
 
   // Avança para a próxima pergunta
   currentQuestionIndex++;
@@ -142,6 +137,8 @@ async function selectAnswer(selectedIndex) {
     endGame(score);
   }
 }
+
+
 
 function displayExplanation(question, answer, explanation) {
   const explanationArea = document.getElementById("explanationArea");
