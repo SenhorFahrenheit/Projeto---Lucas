@@ -72,99 +72,84 @@ function shuffleArray(array) {
  * @param {number} selectedIndex - Índice da resposta selecionada pelo usuário.
  */
 let lastCorrectTime = null; // Armazena o tempo da última resposta correta
-  
+
+// Função principal chamada quando o usuário seleciona uma resposta
 async function selectAnswer(selectedIndex) {
-  const toggleButton = document.getElementById("toggleExplanation"); // Referência para o botão de ocultar resposta
-  toggleButton.style.display = "none";
+  // Obtém referência para o botão de alternar explicação
+  const toggleButton = document.getElementById("toggleExplanation");
+  toggleButton.style.display = "none"; // Esconde o botão inicialmente
   
-  
-  // qualquer erro gerado dentro do escopo de TRY, ele consegue tratar
   try {
-    // Verifica se a resposta está correta
-    if (selectedIndex === questions[currentQuestionIndex].correct) {
-      const now = Date.now(); // Obtém o tempo atual em milissegundos
-      let points = 10; // Pontuação base para uma resposta correta
+    // Obtém a questão atual e verifica se a resposta está correta
+    const currentQuestion = questions[currentQuestionIndex];
+    const isCorrect = selectedIndex === currentQuestion.correct;
 
-      // Se houver um registro da última resposta correta, calcula o tempo entre respostas
-      if (lastCorrectTime) {
-        let timeDiff = (now - lastCorrectTime) / 1000; // Diferença de tempo em segundos
-
-        // Define um multiplicador com base no tempo de resposta:
-        // - Se for menor que 5s, dobra os pontos (x2)
-        // - Se for entre 5s e 10s, aplica um multiplicador de 1.5
-        // - Se for maior que 10s, mantém os pontos normais (x1)
-        let multiplier = timeDiff < 5 ? 2 : timeDiff < 10 ? 1.5 : 1;
-
-        // Ajusta a pontuação final arredondando para um número inteiro
-        points = Math.round(points * multiplier);
-      }
-
-      score += points; // Adiciona os pontos calculados à pontuação total
-      lastCorrectTime = now; // Atualiza o tempo da última resposta correta
-      localStorage.setItem("userScore", score); // Salva a pontuação no localStorage
-    } 
-    // Se a resposta estiver errada...
-    else {
-      // Exibe o botão na interface
-      toggleButton.style.display = "block";
-      // Desabilita o clique do botão durante o carregamento
-      toggleButton.disabled = true; 
-      // Exibe "Gerando resposta..." enquanto a resposta está sendo gerada
-      toggleButton.innerText = "Gerando resposta...";
-
-      // Exibe um alerta para resposta errada
-      alert("Resposta errada");
-      lives--; // Reduz uma vida
-
-      // Se o jogador perder todas as vidas, encerra o jogo
-      if (lives === 0) {
-        endGame();
-        return;
-      }
-
-      // Obtém a resposta selecionada e a pergunta atual
-      const userAnswer = questions[currentQuestionIndex].alternatives[selectedIndex];
-      const userQuestion = questions[currentQuestionIndex].question;
-
-      // Obtém o índice e o elemento HTML da resposta correta
-      const correctIndex = questions[currentQuestionIndex].correct;
-      const correctOptionElement = document.querySelectorAll(".option")[correctIndex];
-
-      // Destaca a resposta correta na interface
-      correctOptionElement.classList.add("correct-answer");
-
-      // Busca e exibe a explicação para a resposta errada
-      const explanation = await fetchExplanation(userQuestion, userAnswer);
-      displayExplanation(userQuestion, userAnswer, explanation);
-
-      // Exibe o botão para alternar a explicação
-      document.getElementById("toggleExplanation").style.display = "block";
-      document.getElementById("toggleExplanation").addEventListener("click", toggleExplanation);
+    if (isCorrect) {
+      handleCorrectAnswer(); // Chama a função para tratar a resposta correta
+    } else {
+      await handleIncorrectAnswer(selectedIndex); // Chama a função para tratar a resposta errada
     }
-
-    // Atualiza o texto do botão para "Mostrar Explicação" após a resposta ser processada
-    toggleButton.innerText = "Mostrar Explicação";
-
   } catch (error) {
-    // Caso haja erro ao gerar a resposta, atualiza o botão para indicar falha
-    toggleButton.innerText = "Falha ao gerar uma resposta";
-    console.error("Erro ao gerar explicação:", error);
+    console.error("Erro ao gerar explicação:", error); // Loga o erro no console
+    toggleButton.innerText = "Falha ao gerar uma resposta"; // Atualiza o botão de explicação
   } finally {
-    // Reabilita o botão caso a resposta tenha sido gerada ou falhado
-    toggleButton.disabled = false;
+    toggleButton.disabled = false; // Reabilita o botão
   }
 
-  // Avança para a próxima pergunta
-  currentQuestionIndex++;
-
-  // Se ainda houver perguntas, carrega a próxima, senão finaliza o jogo
-  if (currentQuestionIndex < questions.length) {
-    loadQuestion();
-  } else {
-    endGame(score);
-  }
+  nextQuestion(); // Avança para a próxima questão
 }
 
+// Função chamada quando a resposta do usuário está correta
+function handleCorrectAnswer() {
+  const now = Date.now(); // Obtém o tempo atual em milissegundos
+  let points = calculatePoints(now); // Calcula a pontuação com base no tempo de resposta
+  
+  score += points; // Adiciona os pontos à pontuação total
+  lastCorrectTime = now; // Atualiza o tempo da última resposta correta
+  localStorage.setItem("userScore", score); // Salva a pontuação no localStorage
+}
+
+// Função chamada quando a resposta do usuário está errada
+async function handleIncorrectAnswer(selectedIndex) {
+  const toggleButton = document.getElementById("toggleExplanation");
+  toggleButton.style.display = "block"; // Exibe o botão de explicação
+  toggleButton.disabled = true; // Desabilita o botão durante o carregamento
+  toggleButton.innerText = "Gerando resposta..."; // Atualiza o texto do botão
+
+  alert("Resposta errada"); // Exibe um alerta informando que a resposta está errada
+  if (--lives === 0) return endGame(); // Se não houver mais vidas, encerra o jogo
+
+  // Obtém a questão atual e destaca a alternativa correta (borda verde)
+  const currentQuestion = questions[currentQuestionIndex];
+  const correctOptionElement = document.querySelectorAll(".option")[currentQuestion.correct];
+  correctOptionElement.classList.add("correct-answer");
+
+  // Obtém a resposta do usuário e busca uma explicação para o erro
+  const userAnswer = currentQuestion.alternatives[selectedIndex];
+  const explanation = await fetchExplanation(currentQuestion.question, userAnswer);
+
+  displayExplanation(currentQuestion.question, userAnswer, explanation); // Exibe a explicação na interface
+  toggleButton.innerText = "Mostrar Explicação"; // Atualiza o botão
+  toggleButton.addEventListener("click", toggleExplanation); // Adiciona o evento de clique para alternar a explicação
+}
+
+// Função para calcular a pontuação com base no tempo de resposta
+function calculatePoints(now) {
+  if (!lastCorrectTime) return 10; // Se for a primeira resposta correta, retorna 10 pontos
+
+  const timeDiff = (now - lastCorrectTime) / 1000; // Calcula a diferença de tempo em segundos
+  const multiplier = timeDiff < 5 ? 2 : timeDiff < 10 ? 1.5 : 1; // Define um multiplicador baseado no tempo
+  
+  return Math.round(10 * multiplier); // Retorna a pontuação ajustada
+}
+
+// Função para avançar para a próxima questão
+function nextQuestion() {
+  currentQuestionIndex++; // Incrementa o índice da pergunta atual
+  
+  // Se houver mais perguntas, carrega a próxima; caso contrário, finaliza o jogo
+  currentQuestionIndex < questions.length ? loadQuestion() : endGame(score);
+}
 
 
 
