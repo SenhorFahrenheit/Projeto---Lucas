@@ -116,6 +116,12 @@ async function handleIncorrectAnswer(selectedIndex) {
   toggleButton.disabled = true; // Desabilita o botão durante o carregamento
   toggleButton.innerText = "Gerando resposta..."; // Atualiza o texto do botão
 
+  // desabilita os cliques para não haver múltiplos cliques
+  document.querySelectorAll(".option").forEach(opcao => {
+    opcao.onclick = null; // Remove o evento inline
+  });
+  
+
   alert("Resposta errada"); // Exibe um alerta informando que a resposta está errada
   if (--lives === 0) return endGame(); // Se não houver mais vidas, encerra o jogo
 
