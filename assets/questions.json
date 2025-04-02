@@ -389,5 +389,105 @@
       "Complicação da manutenção futura do código"
     ],
     "correct": 0
+  },
+  {
+    "question": "O que é um ponteiro em programação?",
+    "alternatives": [
+      "Um tipo de dado que armazena endereços de memória",
+      "Um operador aritmético",
+      "Uma estrutura de controle de fluxo",
+      "Uma função que retorna valores booleanos"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual a finalidade do operador 'modulo' (%) em muitas linguagens?",
+    "alternatives": [
+      "Dividir um número por outro",
+      "Retornar o resto da divisão entre dois números",
+      "Multiplicar dois números",
+      "Arredondar um número decimal"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que é serialização em programação?",
+    "alternatives": [
+      "Converter objetos em um formato que pode ser armazenado ou transmitido",
+      "Processar dados em paralelo",
+      "Ordenar dados em uma sequência específica",
+      "Criptografar dados para segurança"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Qual a diferença entre 'shallow copy' e 'deep copy' em objetos?",
+    "alternatives": [
+      "Não há diferença entre eles",
+      "Shallow copy copia apenas referências, enquanto deep copy copia todos os objetos recursivamente",
+      "Deep copy é mais rápido que shallow copy",
+      "Shallow copy é usado apenas para arrays"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que é 'garbage collection' em algumas linguagens de programação?",
+    "alternatives": [
+      "Um processo de limpeza de código desnecessário",
+      "Um mecanismo para alocação de memória",
+      "Um processo automático de liberação de memória não utilizada",
+      "Um método para otimizar a velocidade de execução do programa"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Qual a função do 'casting' em programação?",
+    "alternatives": [
+      "Converter um tipo de dado em outro",
+      "Criar cópias de objetos",
+      "Filtrar dados de um array",
+      "Realizar operações matemáticas complexas"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "O que é um 'framework' em desenvolvimento de software?",
+    "alternatives": [
+      "Uma linguagem de programação",
+      "Um conjunto de bibliotecas e ferramentas para facilitar o desenvolvimento",
+      "Um editor de texto para escrever código",
+      "Um sistema operacional"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "Qual a principal diferença entre 'interpretação' e 'compilação' de código?",
+    "alternatives": [
+      "Interpretação é mais rápida que compilação",
+      "Compilação gera um executável, enquanto interpretação executa o código linha a linha",
+      "Não há diferença entre eles",
+      "Compilação é usada apenas para linguagens de baixo nível"
+    ],
+    "correct": 1
+  },
+  {
+    "question": "O que é 'refatoração' de código?",
+    "alternatives": [
+      "Adicionar novas funcionalidades ao código",
+      "Melhorar a estrutura e legibilidade do código sem alterar seu comportamento",
+      "Corrigir erros de sintaxe",
+      "Traduzir o código para outra linguagem"
+    ],
+    "correct": 2
+  },
+  {
+    "question": "Qual a importância dos 'testes unitários' em programação?",
+    "alternatives": [
+      "Garantir que o código seja executado corretamente em diferentes ambientes",
+      "Verificar se cada parte do código funciona conforme esperado",
+      "Medir a performance do código",
+      "Documentar o código para facilitar a manutenção"
+    ],
+    "correct": 1
   }
 ]
