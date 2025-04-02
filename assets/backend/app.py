@@ -35,14 +35,14 @@ def chat():
         prompt = (
             f"A questão foi: '{user_question}'. "
             f"O usuário respondeu: '{user_answer}'. "
-            "Explique por que essa resposta está errada de forma clara e objetiva."
+            "Explique por que essa resposta está errada de forma clara e objetiva. Sem ultrapassar 165 tokens."
         )
 
         # Envia a requisição para a OpenAI usando o modelo GPT-4
         response = client.chat.completions.create(
             model="gpt-4",  # Modelo usado para gerar a explicação
             messages=[{"role": "user", "content": prompt}],  # Mensagem enviada ao modelo
-            max_tokens=150  # Limita a quantidade de tokens na resposta
+            max_tokens=165  # Limita a quantidade de tokens na resposta
         )
 
         # Retorna a explicação gerada pelo modelo no formato JSON
