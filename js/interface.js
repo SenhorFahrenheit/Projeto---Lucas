@@ -1,4 +1,5 @@
 let textos = null;
+let ultimoAcerto = null;
 
 //Carrega e retorna os textos embaralhados
 async function carregarTextosEmbaralhados() {
@@ -92,8 +93,20 @@ async function desenharInterface(ctx, canvas, animacoes) {
     canvas.interface.removeEventListener('click', verificarClique);
 
     if (indiceClicado === textosAtual.correct) {
-      pontuacao += 10;
+      let multiplicador = 1;
+      const agora = Date.now();
+
+      if (ultimoAcerto) {
+        const delta = (agora - ultimoAcerto) / 1000;
+        if (delta <= 10) multiplicador = 2;
+        else if (delta < 15) multiplicador = 1.5;
+      }
+
+      const ganho = Math.floor(10 * multiplicador);
+      pontuacao += ganho;
       localStorage.setItem('pontuacao', pontuacao);
+      ultimoAcerto = agora;
+
       await atacarVilao(animacoes);
       perguntaAtual !== textos.length ? await proximaFase(canvas, animacoes) : finalizar(ctx, canvas);
     } else {
@@ -125,16 +138,14 @@ async function explicar(ctx, canvas, pergunta, resposta) {
   try {
     explicacao = await buscarExplicacao(pergunta, resposta);
   } catch (erro) {
-    // Se a API falhar, exibe mensagem de erro e espera 5 segundos
     desenharFundo(ctx.interface, canvas.interface);
     ctx.interface.fillText("Falha ao gerar resposta...", canvas.interface.width / 2, canvas.interface.height / 2);
     await new Promise(resolve => setTimeout(resolve, 5000));
-    return; // Aqui sai da função e continua o fluxo da pergunta normalmente
+    return;
   }
 
   if (!explicacao) return;
 
-  // Redesenha fundo e exibe a explicação
   desenharFundo(ctx.interface, canvas.interface);
   await carregarFonte();
 
@@ -151,10 +162,8 @@ async function explicar(ctx, canvas, pergunta, resposta) {
     ctx.interface.fillText(linha, canvas.interface.width / 2, startYExp + i * alturaLinhaExp);
   });
 
-  // Espera tempo de leitura
   await new Promise(resolve => setTimeout(resolve, 15000));
 }
-
 
 async function buscarExplicacao(pergunta, resposta) {
   const response = await fetch('http://127.0.0.1:5000/chat', {
