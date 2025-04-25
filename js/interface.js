@@ -16,6 +16,30 @@ async function carregarFonte(fonte = "Press Start 2P", tamanho = "1rem") {
   }
 }
 
+function mostrarMultiplicadorTemporario(ctx, canvas, multiplicador) {
+  const x = canvas.interface.width - 150;
+  const y = 20;
+  const largura = 130;
+  const altura = 50;
+
+  ctx.interface.fillStyle = 'rgba(255, 255, 0, 0.8)';
+  ctx.interface.fillRect(x, y, largura, altura);
+  ctx.interface.strokeStyle = '#000';
+  ctx.interface.strokeRect(x, y, largura, altura);
+
+  ctx.interface.fillStyle = '#000';
+  ctx.interface.font = 'bold 0.6rem "Press Start 2P"';
+  ctx.interface.textAlign = 'center';
+  ctx.interface.textBaseline = 'top';
+  ctx.interface.fillText("Multiplicador", x + largura / 2, y + 4);
+
+  ctx.interface.font = 'bold 0.9rem "Press Start 2P"';
+  ctx.interface.textBaseline = 'bottom';
+  ctx.interface.fillText(`x${multiplicador}`, x + largura / 2, y + altura - 4);
+}
+
+
+
 //Desenha fundo cinza da interface
 function desenharFundo(ctx, canvas) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -95,21 +119,25 @@ async function desenharInterface(ctx, canvas, animacoes) {
     if (indiceClicado === textosAtual.correct) {
       let multiplicador = 1;
       const agora = Date.now();
-
+    
       if (ultimoAcerto) {
         const delta = (agora - ultimoAcerto) / 1000;
         if (delta <= 10) multiplicador = 2;
         else if (delta < 15) multiplicador = 1.5;
       }
-
+    
       const ganho = Math.floor(10 * multiplicador);
       pontuacao += ganho;
       localStorage.setItem('pontuacao', pontuacao);
       ultimoAcerto = agora;
-
+    
+      mostrarMultiplicadorTemporario(ctx, canvas, multiplicador); // ← Adicione isso aqui
+    
       await atacarVilao(animacoes);
       perguntaAtual !== textos.length ? await proximaFase(canvas, animacoes) : finalizar(ctx, canvas);
-    } else {
+    }
+    
+    else {
       await atacarHeroi(animacoes);
       vidas--;
       localStorage.setItem('vidas', vidas);
