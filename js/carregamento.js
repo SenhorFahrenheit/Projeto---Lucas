@@ -15,7 +15,7 @@ async function carregarImagens(imagens) {
 // Carrega dados de texto de um arquivo JSON, usado por fase (caso necessário)
 async function carregarTextos() {
   try {
-    const resposta = await fetch(`textos.json`); // Busca o arquivo local
+    const resposta = await fetch(`assets/questions.json`); // Busca o arquivo local
     const dados = await resposta.json(); // Converte para objeto
     return dados || null;
   } catch (error) {

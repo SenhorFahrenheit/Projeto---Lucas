@@ -1,0 +1,252 @@
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('./PressStart2P.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100svh;
+  height: 100dvh;
+  background-color: #121212;
+}
+
+body * {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.styleBox {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../img/Background.png');
+}
+
+#mainBox {
+  height: 70%;
+  width: 70%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#mainBox > header {
+  background-color: #872019;
+  border: 5px solid #d1baba;
+  padding: 1% 0;
+}
+
+#mainBox > header > h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #d1baba;
+}
+
+#mainBox > main {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#mainBox > main > .menu-square {
+  background-color: #872019;
+  border: 5px solid #d1baba;
+}
+
+.menu-square {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+  width: 83%;
+  height: 60%;
+}
+
+.menu-square > button {
+  width: 70%;
+  padding: 2% 0;
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  right: 0;
+}
+
+.menu-buttons > div {
+  width: 50px;
+  height: 50px;
+  background-color: #872019;
+  border: 5px solid #d1baba;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+#usuario {
+  display: none;
+}
+
+#usuario > main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.user-box {
+  background-color: #872019;
+  border: 5px solid #d1baba;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 600px;
+  height: 40%;
+}
+
+.user-box > h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #d1baba;
+}
+
+.user-box > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20%;
+  width: 100%;
+  height: 50%;
+}
+
+.user-box > div > input {
+  width: 60%;
+  padding: 2%;
+  background-color: #fff;
+  color: #872019;
+  border: none;
+  font-size: 1rem;
+}
+
+.user-box > div > button {
+  width: 60%;
+  padding: 10px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#config {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+#config > main {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.config-box {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  max-width: 600px;
+  height: 30%;
+}
+
+.config-box > button {
+  width: 60%;
+  padding: 10px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* canvas escondido até o jogo começar */
+#divCanvas {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+canvas {
+  position: absolute;
+  font-family: 'Press Start 2P', cursive;
+}
+
+#cenario { z-index: 1; top: 0;}
+#pergunta { z-index: 2; top: 0;}
+#sprites { z-index: 2; top: 0;}
+#interface { z-index: 3; bottom: 0;}
+
+.blocoFinal {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+  max-width: 700px;
+  width: 70%;
+  height: 20%;
+  padding: 3%;
+  background-color: #872019;
+  border-radius: 1px;
+  z-index: 5;
+}
+
+.textoFinal {
+  font-size: 2rem;
+  color: #d1baba;
+  text-align: center;
+  font-family: "Press Start 2P", cursive;
+}
+
+.voltarBtn {
+  padding: 10px 20px;
+  background-color: #808080;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

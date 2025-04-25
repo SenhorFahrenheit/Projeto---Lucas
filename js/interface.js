@@ -113,7 +113,7 @@ async function desenharInterface(ctx, canvas, animacoes) {
 //Mostra explicação após resposta errada
 async function explicar(ctx, canvas, pergunta, resposta) {
 
-  const explicacao = null;//await buscarExplicacao(pergunta, resposta);
+  const explicacao = await buscarExplicacao(pergunta, resposta);
 
   if (!explicacao) return;
 
@@ -137,16 +137,16 @@ async function explicar(ctx, canvas, pergunta, resposta) {
   await new Promise(resolve => setTimeout(resolve, 4000));
 }
 
-// async function buscarExplicacao(pergunta, resposta) {
-//   const response = await fetch('/chat', {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({ userQuestion: pergunta, userAnswer: resposta })
-//   });
+async function buscarExplicacao(pergunta, resposta) {
+  const response = await fetch('http://127.0.0.1:5000/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userQuestion: pergunta, userAnswer: resposta })
+  });
 
-//   const data = await response.json();
-//   return data.response || "Desculpe, não consegui encontrar uma explicação.";
-// }
+  const data = await response.json();
+  return data.response || "Desculpe, não consegui encontrar uma explicação.";
+}
 
 function shuffleArray(array) {
   const result = [...array];
