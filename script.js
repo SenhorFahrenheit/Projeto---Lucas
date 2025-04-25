@@ -1,43 +1,63 @@
-// Controle de navegação no menu
-document.getElementById('start-btn').addEventListener('click', startGame);
-// document.getElementById('settings-btn').addEventListener('click', openSettings);
-// document.getElementById('exit-btn').addEventListener('click', exitGame);
+document.getElementById("configBtn").addEventListener("click", function () {
+  document.getElementById("menu").style.display = "none"; // Oculta o menu inicial
+  document.getElementById("config").style.display = "flex"; // Exibe o menu de configurações
 
-// Função para iniciar o jogo
-function startGame() {
-  // Armazenar dados de início ou pontuação
-  localStorage.setItem('userScore', 0);
-  localStorage.setItem('userName', '');
+  document.getElementById("menuBtn").addEventListener("click", function () {
+    document.getElementById("config").style.display = "none"; // Oculta o menu de configurações
+    document.getElementById("menu").style.display = "flex"; // Exibe novamente o menu inicial
+  }, { once: true });
+});
 
-  
-  // Redireciona ou mostra a tela do quiz
-  window.location.href = 'assets/quiz.html'; // Exemplo, se o quiz estiver em uma página separada
-}
+// Adiciona um evento de clique ao botão "OK" para iniciar o jogo
+document.getElementById("jogarBtn").addEventListener("click", function () {
+  document.getElementById("menu").style.display = "none"; // Oculta o menu inicial
+  document.getElementById("usuario").style.display = "flex"; // Exibe a seção de usuário
+});
 
-const typingText = document.getElementById('typing-text');
-const text = `/*
-* CodeQuest - Quiz de Lógica
-* Criado por: Lucas e Karine
-* Versão: 1.0
-* Data: [Data Atual]
-*/
+// Adiciona um evento de clique ao botão "JOGAR"
+document.getElementById("userBtn").addEventListener("click", function () {
+  const nome = document.getElementById("userName").value; // Obtém o valor do campo de entrada
+  if (nome === "") return;
 
-function solveLogic(question) {
-// Lógica complexa aqui...
-if (question.isHard()) {
-return "Desafio aceito!";
-} else { return "Vamos para o próximo!"; }
-}
-`;
-let charIndex = 0;
+  localStorage.setItem('nome', nome); // Armazena o nome do usuário no localStorage
+  // Oculta o menu inicial
+  document.getElementById("usuario").style.display = "none";
 
-function type() {
-    if (charIndex < text.length) {
-        typingText.textContent += text.charAt(charIndex);
-        charIndex++;
-        setTimeout(type, 50);
-    }
-}
+  // Exibe a div que contém os canvas
+  const contPai = document.getElementById("divCanvas");
+  const canvasCenario = document.getElementById("cenario");
+  const canvasSprites = document.getElementById("sprites");
+  const canvasInterface = document.getElementById("interface");
+  const canvasPergunta = document.getElementById("pergunta");
 
-// Adiciona um atraso de 2 segundos antes de iniciar a digitação
-setTimeout(type, 2000);
+  contPai.style.display = "block";
+
+  // Define as dimensões dos canvas com base no tamanho da div pai
+  const largura = contPai.clientWidth;
+  const altura = contPai.clientHeight;
+
+  [canvasCenario, canvasSprites, canvasInterface, canvasPergunta].forEach(c => c.width = largura);
+
+  canvasCenario.height = altura / 1.5; // Altura do canvas do cenário
+  canvasSprites.height = altura / 1.5; // Altura do canvas de sprites
+  canvasInterface.height = altura / 3; // Altura do canvas da interface
+  canvasPergunta.height = canvasCenario.height / 4; // Altura do canvas de perguntas
+
+  // Objeto que agrupa os canvas
+  const conjuntoCanvas = {
+    cenario: canvasCenario,
+    sprites: canvasSprites,
+    interface: canvasInterface,
+    pergunta: canvasPergunta
+  };
+
+  // Adiciona um evento de redimensionamento para recarregar a página
+  let esperarResize;
+  window.addEventListener("resize", () => {
+    clearTimeout(esperarResize);
+    esperarResize = setTimeout(() => location.reload(), 200);
+  });
+
+  // Chama a função para iniciar o jogo, passando os canvas como parâmetro
+  iniciarJogo(conjuntoCanvas);
+});

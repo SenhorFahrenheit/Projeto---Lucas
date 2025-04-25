@@ -112,11 +112,22 @@ async function desenharInterface(ctx, canvas, animacoes) {
 
 //Mostra explicação após resposta errada
 async function explicar(ctx, canvas, pergunta, resposta) {
+  // Exibe "Gerando resposta..." enquanto espera a API
+  desenharFundo(ctx.interface, canvas.interface);
+  await carregarFonte();
 
+  ctx.interface.fillStyle = '#000';
+  ctx.interface.font = `1rem "Press Start 2P"`;
+  ctx.interface.textAlign = 'center';
+  ctx.interface.textBaseline = 'middle';
+  ctx.interface.fillText("Gerando resposta...", canvas.interface.width / 2, canvas.interface.height / 2);
+
+  // Espera a resposta da API
   const explicacao = await buscarExplicacao(pergunta, resposta);
 
   if (!explicacao) return;
 
+  // Redesenha fundo e exibe a explicação
   desenharFundo(ctx.interface, canvas.interface);
   await carregarFonte();
 
@@ -133,9 +144,10 @@ async function explicar(ctx, canvas, pergunta, resposta) {
     ctx.interface.fillText(linha, canvas.interface.width / 2, startYExp + i * alturaLinhaExp);
   });
 
-  // Espera 4 segundos pra terminar
-  await new Promise(resolve => setTimeout(resolve, 4000));
+  // Espera tempo de leitura depois de exibir explicação
+  await new Promise(resolve => setTimeout(resolve, 15000));
 }
+
 
 async function buscarExplicacao(pergunta, resposta) {
   const response = await fetch('http://127.0.0.1:5000/chat', {
