@@ -478,7 +478,7 @@
       "Corrigir erros de sintaxe",
       "Traduzir o código para outra linguagem"
     ],
-    "correct": 2
+    "correct": 1
   },
   {
     "question": "Qual a importância dos 'testes unitários' em programação?",
