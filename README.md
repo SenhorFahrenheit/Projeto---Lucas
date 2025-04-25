@@ -1,10 +1,10 @@
 <h1>Quiz Interativo 🔥</h1>
 
-Um jogo de perguntas e respostas sobre lógica de programação e algoritmos interativo desenvolvido com <strong>HTML, CSS, JavaScript e Python (Flask)</strong>. O jogo possui <strong>30 perguntas armazenadas</strong> em um arquivo JSON e utiliza a <strong>API da OpenAI</strong> para fornecer explicações concisas quando o usuário erra uma resposta.
+Um jogo de perguntas e respostas sobre lógica de programação e algoritmos interativo desenvolvido com <strong>Canvas, JavaScript e Python (Flask)</strong>. O jogo possui <strong>50 perguntas armazenadas</strong> em um arquivo JSON e utiliza a <strong>API da OpenAI</strong> para fornecer explicações concisas quando o usuário erra uma resposta.
 
 <h3>⚙️ Funcionalidades </h3>
 
-- 30 perguntas gravadas em um arquivo JSON.
+- 50 perguntas gravadas em um arquivo JSON.
 
 - Sorteio de 10 perguntas aleatórias para o jogador.
 
@@ -24,7 +24,7 @@ Um jogo de perguntas e respostas sobre lógica de programação e algoritmos int
 <br>
 🛠 Tecnologias:
 
-Frontend: HTML, CSS, JavaScript
+Frontend: Canvas, JavaScript
 
 Backend: Python (Flask)
 
