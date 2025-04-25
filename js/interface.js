@@ -112,7 +112,6 @@ async function desenharInterface(ctx, canvas, animacoes) {
 
 //Mostra explicação após resposta errada
 async function explicar(ctx, canvas, pergunta, resposta) {
-  // Exibe "Gerando resposta..." enquanto espera a API
   desenharFundo(ctx.interface, canvas.interface);
   await carregarFonte();
 
@@ -122,8 +121,16 @@ async function explicar(ctx, canvas, pergunta, resposta) {
   ctx.interface.textBaseline = 'middle';
   ctx.interface.fillText("Gerando resposta...", canvas.interface.width / 2, canvas.interface.height / 2);
 
-  // Espera a resposta da API
-  const explicacao = await buscarExplicacao(pergunta, resposta);
+  let explicacao;
+  try {
+    explicacao = await buscarExplicacao(pergunta, resposta);
+  } catch (erro) {
+    // Se a API falhar, exibe mensagem de erro e espera 5 segundos
+    desenharFundo(ctx.interface, canvas.interface);
+    ctx.interface.fillText("Falha ao gerar resposta...", canvas.interface.width / 2, canvas.interface.height / 2);
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    return; // Aqui sai da função e continua o fluxo da pergunta normalmente
+  }
 
   if (!explicacao) return;
 
@@ -144,7 +151,7 @@ async function explicar(ctx, canvas, pergunta, resposta) {
     ctx.interface.fillText(linha, canvas.interface.width / 2, startYExp + i * alturaLinhaExp);
   });
 
-  // Espera tempo de leitura depois de exibir explicação
+  // Espera tempo de leitura
   await new Promise(resolve => setTimeout(resolve, 15000));
 }
 
