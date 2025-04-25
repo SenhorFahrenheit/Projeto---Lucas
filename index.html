@@ -1,27 +1,136 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeQuest - Quiz de Lógica</title>
-    <style>
-      
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="style.css" type="text/css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura o layout responsivo -->
+  <title>Jogo Canvas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!-- Fonte personalizada -->
+  <link rel="stylesheet" href="style/style.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="left">
-            <h1>CodeQuest</h1>
-            <p>O desafio da lógica</p>
-            <span>Responda perguntas desafiadoras e teste seus conhecimentos em lógica de programação. Será que você consegue acertar todas?</span>
-            <button id="start-btn" class="btn">Jogar</button>
-        </div>
-        <div class="right">
-            <span id="typing-text"></span>
-        </div>
+  <div id="menu" class="styleBox"> <!-- Div principal que contém o menu inicial -->
+    <div id="mainBox">
+      <header>
+        <h1>LogicJourney</h1>
+      </header>
+      <main>
+        <section class="menu-square"> <!-- Seção com os botões do menu -->
+          <button type="button" id="jogarBtn">JOGAR</button>
+          <button type="button">SAIR</button>
+        </section>
+        <section class="menu-buttons">
+          <div id="configBtn">⚙</div>
+          <div>🔊</div>
+        </section>
+      </main>
     </div>
-    <script src="script.js"></script>
+  </div>
+  <div id="usuario" class="styleBox">
+    <main>
+      <!-- Campo de entrada para o nome do usuário -->
+      <section class="user-box">
+        <h1>Antes de começar, insira seu nome</h1>
+        <div>
+          <input type="text" id="userName" placeholder="Digite seu nome" maxlength="15">
+          <button type="button" id="userBtn">OK</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="config" class="styleBox"> <!-- Seção com os botões de configuração -->
+    <main>
+      <section class="config-box">
+        <button type="button">Cache</button>
+        <button type="button" id="menuBtn">Menu</button>
+      </section>
+    </main>
+  </div>
+
+  <div id="divCanvas" style="display: none;"> <!-- Div que contém os elementos canvas, inicialmente oculta -->
+    <canvas id="cenario"></canvas> <!-- Canvas para o cenário -->
+    <canvas id="pergunta"></canvas> <!-- Canvas para perguntas -->
+    <canvas id="sprites"></canvas> <!-- Canvas para sprites -->
+    <canvas id="interface"></canvas> <!-- Canvas para interface -->
+    <noscript>Seu navegador não suporta o canvas. Por favor ative o JavaScript.</noscript>
+    <!-- Mensagem para navegadores sem suporte a JavaScript -->
+  </div>
 </body>
+<script src="js/iniciar.js"></script> <!-- Script para inicialização do jogo -->
+<script src="js/pergunta.js"></script> <!-- Script relacionado às perguntas -->
+<script src="js/interface.js"></script> <!-- Script para a interface -->
+<script src="js/cenario.js"></script> <!-- Script para o cenário -->
+<script src="js/animacao.js"></script> <!-- Script para animações -->
+<script src="js/carregamento.js"></script> <!-- Script para carregamento de conteúdo -->
+<script src="js/eventos.js"></script> <!-- Script para eventos -->
+<script src="js/heroi.js"></script> <!-- Script para o herói -->
+<script src="js/vilao.js"></script> <!-- Script para o vilão -->
+<script>
+  document.getElementById("configBtn").addEventListener("click", function () {
+    document.getElementById("menu").style.display = "none"; // Oculta o menu inicial
+    document.getElementById("config").style.display = "flex"; // Exibe o menu de configurações
+
+    document.getElementById("menuBtn").addEventListener("click", function () {
+      document.getElementById("config").style.display = "none"; // Oculta o menu de configurações
+      document.getElementById("menu").style.display = "flex"; // Exibe novamente o menu inicial
+    }, { once: true });
+  });
+
+  // Adiciona um evento de clique ao botão "OK" para iniciar o jogo
+  document.getElementById("jogarBtn").addEventListener("click", function () {
+    document.getElementById("menu").style.display = "none"; // Oculta o menu inicial
+    document.getElementById("usuario").style.display = "flex"; // Exibe a seção de usuário
+  });
+
+  // Adiciona um evento de clique ao botão "JOGAR"
+  document.getElementById("userBtn").addEventListener("click", function () {
+    const nome = document.getElementById("userName").value; // Obtém o valor do campo de entrada
+    if (nome === "") return;
+
+    localStorage.setItem('nome', nome); // Armazena o nome do usuário no localStorage
+    // Oculta o menu inicial
+    document.getElementById("usuario").style.display = "none";
+
+    // Exibe a div que contém os canvas
+    const contPai = document.getElementById("divCanvas");
+    const canvasCenario = document.getElementById("cenario");
+    const canvasSprites = document.getElementById("sprites");
+    const canvasInterface = document.getElementById("interface");
+    const canvasPergunta = document.getElementById("pergunta");
+
+    contPai.style.display = "block";
+
+    // Define as dimensões dos canvas com base no tamanho da div pai
+    const largura = contPai.clientWidth;
+    const altura = contPai.clientHeight;
+
+    [canvasCenario, canvasSprites, canvasInterface, canvasPergunta].forEach(c => c.width = largura);
+
+    canvasCenario.height = altura / 1.5; // Altura do canvas do cenário
+    canvasSprites.height = altura / 1.5; // Altura do canvas de sprites
+    canvasInterface.height = altura / 3; // Altura do canvas da interface
+    canvasPergunta.height = canvasCenario.height / 4; // Altura do canvas de perguntas
+
+    // Objeto que agrupa os canvas
+    const conjuntoCanvas = {
+      cenario: canvasCenario,
+      sprites: canvasSprites,
+      interface: canvasInterface,
+      pergunta: canvasPergunta
+    };
+
+    // Adiciona um evento de redimensionamento para recarregar a página
+    let esperarResize;
+    window.addEventListener("resize", () => {
+      clearTimeout(esperarResize);
+      esperarResize = setTimeout(() => location.reload(), 200);
+    });
+
+    // Chama a função para iniciar o jogo, passando os canvas como parâmetro
+    iniciarJogo(conjuntoCanvas);
+  });
+</script>
+
 </html>
