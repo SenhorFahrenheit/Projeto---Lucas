@@ -82,6 +82,7 @@ async function desenharInterface(ctx, canvas, animacoes) {
   desenharFundo(ctx.interface, canvas.interface);
   await carregarFonte();
 
+  avancarPerguntaAtual();
   const perguntaAtual = parseInt(localStorage.getItem('pergunta'));
   let vidas = parseInt(localStorage.getItem('vidas'));
   let pontuacao = parseInt(localStorage.getItem('pontuacao'));
@@ -92,8 +93,6 @@ async function desenharInterface(ctx, canvas, animacoes) {
     console.error('Texto não encontrado para a pergunta:', perguntaAtual);
     return;
   }
-
-  avancarPerguntaAtual();
 
   desenharPergunta(ctx, canvas, textosAtual.question);
 
@@ -142,7 +141,7 @@ async function desenharInterface(ctx, canvas, animacoes) {
       vidas--;
       localStorage.setItem('vidas', vidas);
 
-      if (vidas <= 0) finalizar(ctx, canvas, true);
+      if ((vidas <= 0) || (perguntaAtual === textos.length)) finalizar(ctx, canvas, true);
       else {
         await explicar(ctx, canvas, textosAtual.question, textosAtual.alternatives[indiceClicado]);
         desenharInterface(ctx, canvas, animacoes);

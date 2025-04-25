@@ -3,7 +3,7 @@ async function iniciarJogo(canvas, iniciou = false) {
   if (!iniciou) {
     localStorage.setItem('vidas', 5);
     localStorage.setItem('pontuacao', 0);
-    localStorage.setItem('pergunta', 1);
+    localStorage.setItem('pergunta', 0);
   }
   // Reutiliza o contexto salvo globalmente, ou inicializa os contextos 2D para os diferentes layers do jogo
   const contexto = iniciou ? window.contexto : {
