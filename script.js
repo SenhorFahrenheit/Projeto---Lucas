@@ -17,7 +17,7 @@ function startGame() {
 const typingText = document.getElementById('typing-text');
 const text = `/*
 * CodeQuest - Quiz de Lógica
-* Criado por: Lucas e [Nome da sua parceira]
+* Criado por: Lucas e Karine
 * Versão: 1.0
 * Data: [Data Atual]
 */
